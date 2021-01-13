@@ -1,7 +1,5 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, get_object_or_404
 from .models import Question, Choice
-
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -13,5 +11,13 @@ def detail(request, question_id):
         question = Question.objects.get(pk=question_id)
     except Question.DoesNotExist:
         raise Http404("Question does not exist")
-    return render(request, 'poll/results.html', question)
+    return render(request, 'poll/detail.html', {'question': question})
     
+def results(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'poll/results.html', {'question': question})
+
+# def vote(request, question_id):
+#     question = get_object_or_404(Question, pk=question_id)
+#     try:
+#         selec
