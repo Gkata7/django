@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-<a class="btn-primary btn-sm mt-3" href="{% url 'poll:index' %}">Back To Polls</a>
-<h1 class="text-center mt-3">{{question.question_text}}</h1>
+<a class="btn btn-primary mt-3" href="{% url 'poll:index' %}">Back To Polls</a>
+<h1 class="text-center mt-5">{{question.question_text}}</h1>
 
 {% if error_message %}
 <p class="alert alert-danger">
@@ -23,7 +23,7 @@
     <label for="choice{{ forloop.counter }}">{{choice.choice_text}}</label>
   </div>
   {% endfor %}
-  <input type="submit" value="Vote" class="btn btn-success">
+  <input type="submit" value="Vote" class="btn btn-success btn-block mt-3">
 </form>
 
 {% endblock %}
